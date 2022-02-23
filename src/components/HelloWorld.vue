@@ -42,12 +42,50 @@ export default {
   },
   data () {
     return {
-      web3Model: new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:8545'))
+      // web3Model: new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:8545'))
     }
   },
   methods: {
-    test () {
-      console.log(this.web3Model)
+    async test () {
+      if (typeof window.ethereum !== 'undefined') {
+        const ethereum = window.ethereum
+        ethereum.autoRefreshOnNetworkChange = false;
+        try {
+          await ethereum.enable()
+          const provider = window['ethereum']
+          const web3 = new Web3(provider)
+          var contract = "0xe470FAdd73f692a85443fccbD0a806a00DFdff6e"
+          const CONTRACTAbi = [{ "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }]
+          var myContract = new web3.eth.Contract(CONTRACTAbi, contract)
+          console.log(myContract)
+          // myContract.methods.balanceOf(accounts[0]).call({from: contract}, function(error, result){
+          //     console.log(error, result)
+          // });
+          // let fromAddress = accounts[0];
+          // let amount = 1 * Math.pow(10, 18);
+          // let toAddress = "0xE9189Ae0Bb5238050e8e2253dC7Bb88b9531E903";
+          // web3.eth.sendTransaction({
+          //   gas: 21000,
+          //   gasPrice: 5000000000,
+          //   from: fromAddress,
+          //   to: toAddress,
+          //   value: amount
+          // }, (err, result) => {
+          //   console.log("转账Hash=", result)
+          //   console.log("err=", err)
+          // })
+          // ethereum.on('accountsChanged', function (accounts) {
+          //   console.log("当前账户发生更改：" + accounts)
+          // })
+          // ethereum.on('networkChanged', function (networkVersion) {
+          //   console.log("networkChanged" + networkVersion)
+          // })
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      // console.log(myContract) balanceOf
+      // await this.myContract.methods.mint(account, id, count, '0x0').send({ from: account, })
     }
   }
 }
