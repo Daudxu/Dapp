@@ -41,7 +41,7 @@ export default function App() {
   };
 
   return (
-    <form className="m-4" onSubmit={handleSubmit}>
+    <div className="m-4">
       <div className="credit-card w-full lg:w-1/2 sm:w-auto shadow-lg mx-auto rounded-xl bg-white">
         <main className="mt-4 p-4">
           <h1 className="text-xl font-semibold text-gray-700 text-center">
@@ -79,7 +79,7 @@ export default function App() {
       </div>
       <div className="credit-card w-full lg:w-1/2 sm:w-auto shadow-lg mx-auto rounded-xl bg-white">
         <main className="mt-4 p-4">
-          <h1 className="text-xl font-semibold text-gray-700 text-center">
+          <h1 className="text-xl font-semibold text-gray-700 text-center" helder="handleSubmit">
                 Sign
           </h1>
           <div className="">
@@ -99,6 +99,29 @@ export default function App() {
           <TxList txs={txs} />
         </footer>
       </div>
-    </form>
+      
+      <div className="credit-card w-full lg:w-1/2 sm:w-auto shadow-lg mx-auto rounded-xl bg-white">
+        <main className="mt-4 p-4">
+          <h1 className="text-xl font-semibold text-gray-700 text-center" helder="handleSubmit">
+                Sign
+          </h1>
+          <div className="">
+            <div className="my-3">
+              <textarea class="textarea textarea-info block w-full focus:ring focus:outline-none" placeholder="sign content"></textarea>
+            </div>
+          </div>
+        </main>
+        <footer className="p-4">
+          <button
+            type="submit"
+            className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
+          >
+            Sign
+          </button>
+          <ErrorMessage message={error} />
+          <TxList txs={txs} />
+        </footer>
+      </div>
+  </div>
   );
 }
